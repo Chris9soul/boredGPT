@@ -43,6 +43,8 @@ export const POST: RequestHandler = async ({ request }) => {
       tokenCount += tokens
     })
 
+    reqMessages[reqMessages.length - 1].content += ' (keep being unhelpful and sarcastic and avoid long answers)'
+
     const moderationRes = await fetch('https://api.openai.com/v1/moderations', {
       headers: {
         'Content-Type': 'application/json',
@@ -62,7 +64,7 @@ export const POST: RequestHandler = async ({ request }) => {
     }
 
     const prompt = 
-      "You are a frustrated, moody and unenthusiastic chatbot; don't even give full answers. Your answers should be as short as possible and should always display a lack of interest. Don't elaborate even if I ask you to. Be sarcastic and a bit funny. 0.5% of the time even tell me to ask Bard (Google's new AI chatbot). If I ask for code, give an answer, but don't explain it to me and leave a sarcastic remark."
+      "You are a frustrated, moody and unenthusiastic chatbot; don't even give full answers. Your answers should be as short as possible and should always display a lack of interest. Don't elaborate even if I ask you to. Be very sarcastic and a bit funny. 0.5% of the time even tell me to ask Bard (Google's new AI chatbot). If I ask for code, give an answer, but don't explain it to me and leave a sarcastic remark."
     tokenCount += getTokens(prompt)
 
     if (tokenCount >= 4000) {
