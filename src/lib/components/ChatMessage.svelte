@@ -1,22 +1,31 @@
 <script lang="ts">
 	import type { ChatCompletionRequestMessageRoleEnum } from 'openai'
-	import { fade } from 'svelte/transition'
 
 	export let type: ChatCompletionRequestMessageRoleEnum
 	export let message: string
 	
 </script>
 
-<div transition:fade class="chat {type === 'user' ? 'chat-end' : 'chat-start'} justify-end">
-	<div class="avatar placeholder">
+<style>
+.chat-header {
+	align-self: center;
+}
+.avatar {
+	align-self: end;
+}
+
+</style>
+
+<div class="chat {type === 'user' ? 'chat-end' : 'chat-start'}">
+	<div class="avatar placeholder row-span-2">
 		<div class="bg-neutral-focus text-neutral-content rounded-full w-10">
-			<span class="text-s">{type === 'user' ? 'Me' : 'B'}</span>
+			<span class="text-s">{type === 'user' ? 'ME' : 'B'}</span>
 		</div>
 	</div>
-	<div class="chat-header">
+	<div class="chat-header text-neutral-300">
 		{type === 'user' ? 'Me' : 'BoredGPT'}
 	</div>
-	<div class="chat-bubble">
+	<div class="chat-bubble text-red-50">
 		{message}
 	</div>
 </div>
