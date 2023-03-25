@@ -1,38 +1,16 @@
-# create-svelte
+# BoredGPT
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+What if chatGPT got tired of answering millions of people daily?
+You get BoredGPT, a grumpy, annoyed, sarcastic AI chat bot that is tired of giving answers.
 
-## Creating a project
+## This is a joke
 
-If you're seeing this, you've probably already done this step. Congrats!
+Note that this project was made for entertainment and is in no way meant to be taken seriously.  
+Enjoy 👾
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Tech Stack:
+[`Sveltekit`](https://kit.svelte.dev/)
+[`OpenAI API`](https://platform.openai.com/docs/api-reference)
+[`TypeScript`](https://www.typescriptlang.org/)
+[`Tailwind`](https://tailwindcss.com/)
+[`Vercel`](https://vercel.com/)
