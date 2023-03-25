@@ -81,6 +81,12 @@
 					<ExamplePrompt text="Got any creative ideas for a 10 year old's birthday?"/>
 					<ExamplePrompt text="How do I make an HTTP request in Javascript?"/>
 				</div>
+				<div class="flex flex-col items-center gap-3 mt-4">
+					<p>Capabilities</p>
+					<ExamplePrompt type="info" text="Is too lazy to answer sometimes"/>
+					<ExamplePrompt type="info" text="Incredibly sarcastic. May hurt your feelings"/>
+					<ExamplePrompt type="info" text="Sometimes actually helpful"/>
+				</div>
 			{/if}
 			{#each chatMessages as message}
 				<ChatMessage type={message.role} message={message.content} />
