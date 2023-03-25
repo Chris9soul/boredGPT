@@ -9,11 +9,11 @@
 	let answer = ''
 	let loading = false
 	let chatMessages: ChatCompletionRequestMessage[] = []
-	let scrollToDiv: HTMLDivElement
+	let messagesWindow: HTMLElement
 
 	function scrollToBottom() {
 		setTimeout(function() {
-			scrollToDiv.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' })
+			messagesWindow.scroll({ top: messagesWindow.scrollHeight, behavior: "smooth"})
 		}, 100)
 	}
 
@@ -66,13 +66,13 @@
 	}
 </script>
 
-<div class="flex flex-col pt-4 w-full px-8 items-center gap-2">
+<div class="flex flex-col pt-8 w-full px-2 items-center gap-2 sm:px-8 ">
 	<div class="flex flex-col items-center text-center">
 		<h1 class="text-4xl font-semibold w-full text-center mb-8">BoredGPT</h1>
 		<p class="text-sm italic mb-4">ChatGPT's distant relative who is tired of all the questions</p>
 		<p class="text-xs italic text-gray-400">Powered by gpt-3.5-turbo</p>
 	</div>
-	<div class="h-[500px] w-full bg-gray-900 rounded-md p-4 overflow-y-auto flex flex-col gap-4">
+	<div bind:this={messagesWindow} class="h-[500px] w-full bg-gray-900 rounded-md sm:p-4 p-2 overflow-y-auto flex flex-col gap-4">
 		<div class="flex flex-col gap-2">
 			{#if chatMessages.length === 0}
 				<div class="flex flex-col items-center gap-3">
@@ -89,18 +89,23 @@
 				<ChatMessage type="assistant" message={answer} />
 			{/if}
 			{#if loading}
-				<ChatMessage type="assistant" message="..." />
+				<ChatMessage type="assistant" typing={true} message=""/>
 			{/if}
 		</div>
-		<div class="" bind:this={scrollToDiv}/>
 	</div>
 	<form
-		class="flex w-full rounded-md gap-4 bg-gray-900 p-4"
-		on:submit|preventDefault={() => {
-			handleSubmit()
-		}}
+	class="flex w-full rounded-md gap-4 bg-gray-900 p-4"
+	on:submit|preventDefault={() => {
+		handleSubmit()
+	}}
 	>
-		<input type="text" class="input input-bordered w-full" bind:value={$query} />
-		<button type="submit" class="btn btn-accent"> Send </button>
+	<input type="text" class="input input-bordered w-full bg-gray-800" bind:value={$query} />
+	<!-- <button type="submit" class="btn btn-accent"> Send </button> -->
+	<button class="p-1 w-14 flex-auto flex justify-center items-center rounded-md text-emerald-300 hover:text-white bg-emerald-600 hover:bg-emerald-700 transition-colors">
+		<svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mr-1" height="1.25em" width="1.25em" xmlns="http://www.w3.org/2000/svg">
+			<line x1="22" y1="2" x2="11" y2="13"></line>
+			<polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+		</svg>
+	</button>
 	</form>
 </div>
