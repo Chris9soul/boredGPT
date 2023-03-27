@@ -41,8 +41,8 @@
 		eventSource.addEventListener('message', (e)=> {
 			scrollToBottom()
 			try {
-				loading = false
 				if ( e.data === '[DONE]' ) {
+					loading = false
 					chatMessages = [...chatMessages, { role: 'assistant', content: answer }]
 					answer = ''
 					return
@@ -100,7 +100,7 @@
 			{#if answer}
 				<ChatMessage type="assistant" message={answer} />
 			{/if}
-			{#if loading}
+			{#if (loading && answer === '')}
 				<ChatMessage type="assistant" typing={true} message=""/>
 			{/if}
 			{#if error}
