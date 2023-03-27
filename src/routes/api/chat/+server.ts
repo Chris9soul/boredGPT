@@ -60,7 +60,7 @@ export const POST: RequestHandler = async ({ request }) => {
     const [results] = moderationData.results
     
     if (results.flagged) {
-      throw new Error('Query flagged by openai')
+      throw new Error('Query flagged by OPENAI')
     }
 
     const prompt = 
@@ -105,7 +105,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
   } catch (err) {
     console.log(err)
-    return json({ error: 'There was an error processing your request' }, { status: 500 })
+    return json({ error: 'There was an error processing your request. Try again.' }, { status: 500 })
   }
 
 }

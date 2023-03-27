@@ -8,6 +8,7 @@
 
 	let answer = ''
 	let loading = false
+	let error = false
 	let chatMessages: ChatCompletionRequestMessage[] = []
 	let messagesWindow: HTMLElement
 
@@ -19,7 +20,12 @@
 
 	const handleSubmit = async () => {
 		loading = true
-		chatMessages = [...chatMessages, { role: 'user', content: $query}]
+
+		if (error) {
+			error = false
+		} else {
+			chatMessages = [...chatMessages, { role: 'user', content: $query}]
+		}
 
 		const eventSource = new SSE('/api/chat', {
 			headers: {
@@ -60,14 +66,14 @@
 
 	function handleError<T>(err: T) {
 		loading = false
+		error = true
 		$query = ''
 		answer = ''
-		console.log(err)
 	}
 </script>
 
 <div class="flex flex-col pt-8 h-full w-full px-2 bg-gray-900 items-center gap-2 sm:px-8 ">
-	<div bind:this={messagesWindow} class="h-full w-full rounded-md sm:p-4 pb-20 overflow-y-auto flex flex-col gap-4">
+	<div bind:this={messagesWindow} class="h-full w-full rounded-md sm:px-4 sm:pt-4 pb-20 overflow-y-auto flex flex-col gap-4">
 		<div class="flex flex-col gap-2">
 			{#if chatMessages.length === 0}
 				<div class="flex flex-col items-center text-center">
@@ -97,6 +103,14 @@
 			{#if loading}
 				<ChatMessage type="assistant" typing={true} message=""/>
 			{/if}
+			{#if error}
+				<div class="flex flex-col justify-center items-center gap-2 border-solid border border-red-800 bg-red-500/10 rounded-md py-2">
+					There was an error. 
+					<button on:click={handleSubmit} class="py-2 px-3 flex justify-center items-center rounded-md relative text-white hover:text-white bg-emerald-600 hover:bg-emerald-700 transition-colors">
+						Try again
+					</button>
+				</div>
+			{/if}
 		</div>
 	</div>
 	<div class="absolute bottom-0 w-full sm:p-4 p-2 bg-gradient-to-t from-gray-900 via-gray-900">
@@ -107,8 +121,8 @@
 		}}
 		>
 		<input type="text" class="input input-bordered w-full bg-gray-800" bind:value={$query} />
-		<!-- <button type="submit" class="btn btn-accent"> Send </button> -->
-		<button class="p-1 w-14 flex-auto flex justify-center items-center rounded-md relative text-emerald-300 hover:text-white bg-emerald-600 hover:bg-emerald-700 transition-colors disabled:bg-gray-400 disabled:text-gray-500 {loading || ($query === '') ? 'cursor-not-allowed' : ''}" disabled={loading || ($query === '') ? true : false}>
+
+		<button class="p-1 w-14 flex-auto flex justify-center items-center rounded-md relative text-emerald-300 hover:text-white bg-emerald-600 hover:bg-emerald-700 transition-colors disabled:bg-gray-400 disabled:text-gray-500 {loading || ($query.trim() === '') ? 'cursor-not-allowed' : ''}" disabled={loading || ($query.trim() === '') ? true : false}>
 			{#if loading}
 				<svg style="margin: auto; background: rgba(0, 0, 0, 0); display: block;" class="h-5 w-5" height="1.25em" width="1.25em" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 					<circle cx="50" cy="50" fill="none" stroke="#ffffff" stroke-width="6" r="28" stroke-dasharray="131.94689145077132 45.982297150257104">
