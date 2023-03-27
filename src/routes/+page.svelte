@@ -101,7 +101,7 @@
 	</div>
 	<div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-gray-900 via-gray-900">
 		<form
-		class="flex w-full rounded-md gap-4"
+		class="flex w-full rounded-md gap-4 px-8"
 		on:submit|preventDefault={() => {
 			handleSubmit()
 		}}
