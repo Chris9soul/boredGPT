@@ -43,7 +43,9 @@ export const POST: RequestHandler = async ({ request }) => {
       tokenCount += tokens
     })
 
-    reqMessages[reqMessages.length - 1].content += ' (keep being unhelpful and sarcastic and avoid long answers)'
+    if (reqMessages[reqMessages.length - 1].content.length > 5) {
+      reqMessages[reqMessages.length - 1].content += ' (keep being unhelpful and sarcastic and avoid long answers)'
+    }
 
     const moderationRes = await fetch('https://api.openai.com/v1/moderations', {
       headers: {
