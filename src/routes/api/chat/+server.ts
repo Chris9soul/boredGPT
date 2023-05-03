@@ -37,7 +37,7 @@ export const POST: RequestHandler = async ({ request }) => {
     }
 
     let tokenCount = 0
-
+    
     reqMessages.forEach(msg => {
       const tokens = getTokens(msg.content)
       tokenCount += tokens

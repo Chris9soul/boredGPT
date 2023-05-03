@@ -120,22 +120,22 @@
 			handleSubmit()
 		}}
 		>
-		<input type="text" class="input input-bordered w-full bg-gray-800" bind:value={$query} />
+			<input type="text" class="input input-bordered w-full bg-gray-800" bind:value={$query} />
 
-		<button class="p-1 w-14 flex-auto flex justify-center items-center rounded-md relative text-emerald-300 hover:text-white bg-emerald-600 hover:bg-emerald-700 transition-colors disabled:bg-gray-400 disabled:text-gray-500 {loading || ($query.trim() === '') ? 'cursor-not-allowed' : ''}" disabled={loading || ($query.trim() === '') ? true : false}>
-			{#if loading}
-				<svg style="margin: auto; background: rgba(0, 0, 0, 0); display: block;" class="h-5 w-5" height="1.25em" width="1.25em" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-					<circle cx="50" cy="50" fill="none" stroke="#ffffff" stroke-width="6" r="28" stroke-dasharray="131.94689145077132 45.982297150257104">
-						<animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="2s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
-					</circle>
+			<button class="p-1 w-14 flex-auto flex justify-center items-center rounded-md relative text-emerald-300 hover:text-white bg-emerald-600 hover:bg-emerald-700 transition-colors disabled:bg-gray-400 disabled:text-gray-500 {loading || ($query.trim() === '') ? 'cursor-not-allowed' : ''}" disabled={loading || ($query.trim() === '') ? true : false}>
+				{#if loading}
+					<svg style="margin: auto; background: rgba(0, 0, 0, 0); display: block;" class="h-5 w-5" height="1.25em" width="1.25em" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+						<circle cx="50" cy="50" fill="none" stroke="#ffffff" stroke-width="6" r="28" stroke-dasharray="131.94689145077132 45.982297150257104">
+							<animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="2s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+						</circle>
+					</svg>
+				{:else}
+				<svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mr-1" height="1.25em" width="1.25em" xmlns="http://www.w3.org/2000/svg">
+					<line x1="22" y1="2" x2="11" y2="13"></line>
+					<polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
 				</svg>
-			{:else}
-			<svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 mr-1" height="1.25em" width="1.25em" xmlns="http://www.w3.org/2000/svg">
-				<line x1="22" y1="2" x2="11" y2="13"></line>
-				<polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-			</svg>
-			{/if}
-		</button>
+				{/if}
+			</button>
 		</form>
 	</div>
 </div>
