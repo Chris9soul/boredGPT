@@ -17,3 +17,6 @@ Tech Stack:
 [`TypeScript`](https://www.typescriptlang.org/)
 [`Tailwind`](https://tailwindcss.com/)
 [`Vercel`](https://vercel.com/)
+
+## Credits
+I built this with the help of a [tutorial from Huntabyte](https://www.youtube.com/watch?v=dXsZp39L2Jk)! 
